@@ -11,7 +11,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const password = process.env.PASSWORD;
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 6);
-const serverUrl = `https://url-shortener-av.herokuapp.com:${port}/`;
+const serverUrl = `https://url-shortener-av.herokuapp.com/`;
 
 mongoose.connect(
   `mongodb+srv://mrswagbhinav:${password}@cluster0.bugur.mongodb.net/url_shortener?retryWrites=true&w=majority`,
@@ -77,5 +77,5 @@ app.post("/url", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Listening at ${serverUrl}`);
+  console.log(`Listening at port ${port}`);
 });
