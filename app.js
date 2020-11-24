@@ -4,13 +4,15 @@ const morgan = require("morgan");
 const path = require("path");
 const helmet = require("helmet");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+const password = process.env.PASSWORD;
 const serverUrl = `https://url-shortener-av.herokuapp.com:${port}/`;
 
 mongoose.connect(
-  "mongodb+srv://mrswagbhinav:WFcUf57ZdC6FQYb3@cluster0.bugur.mongodb.net/url_shortener?retryWrites=true&w=majority",
+  `mongodb+srv://mrswagbhinav:${password}@cluster0.bugur.mongodb.net/url_shortener?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -79,5 +81,5 @@ app.post("/url", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`${serverUrl}`);
+  console.log(`Listening at ${serverUrl}`);
 });
