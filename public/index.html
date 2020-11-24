@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>URL Shortener</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+      rel="stylesheet"
+    />
+    <link href="./styles.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+      integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="main-block">
+      <h1>Shorten your URLs</h1>
+      <form action="/url" method="POST">
+        <hr />
+        <input
+          type="text"
+          name="_id"
+          autocomplete="off"
+          placeholder="Custom Slug (optional)"
+          pattern="^[a-z0-9\-]*$"
+        />
+        <input
+          type="text"
+          name="url"
+          autocomplete="off"
+          placeholder="URL"
+          required
+          pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
+        />
+        <hr />
+        <div class="btn-block">
+          <button type="submit">Create</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
