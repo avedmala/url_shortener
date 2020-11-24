@@ -4,11 +4,13 @@ const morgan = require("morgan");
 const path = require("path");
 const helmet = require("helmet");
 const mongoose = require("mongoose");
+const { customAlphabet } = require("nanoid");
 require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 const password = process.env.PASSWORD;
+const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 6);
 const serverUrl = `https://url-shortener-av.herokuapp.com:${port}/`;
 
 mongoose.connect(
@@ -28,12 +30,6 @@ const urlSchema = mongoose.Schema(
 );
 
 const Url = mongoose.model("urls", urlSchema);
-
-function generateId(len) {
-  var arr = new Uint8Array((len || 40) / 2);
-  window.crypto.getRandomValues(arr);
-  return Array.from(arr, dec2hex).join("");
-}
 
 app.set("view engine", "pug");
 
@@ -60,7 +56,7 @@ app.get("/:id", (req, res) => {
 });
 
 app.post("/url", (req, res) => {
-  const _id = req.body._id ? req.body._id : generateId(6);
+  const _id = req.body._id ? req.body._id : nanoid();
   const url = req.body.url;
   const newUrl = new Url({ _id: _id, url: url });
 
