@@ -2,6 +2,8 @@
 
 The app hosted on heroku lets you enter a URL and an optional slug to shorten the URL to. If the slug is taken, you cannot use it. Omitting the slug will make the app generate a random six character long one.
 
+* If you're cloning this project, rename [.env.dist](https://github.com/mrswagbhinav/url_shortener/blob/main/.env.dist) to `.env` and enter your mongoDB password. Also enter your own connection string to replace the the MongoDB SRV connection string on line 16 of [app.js](https://github.com/mrswagbhinav/url_shortener/blob/main/app.js).
+
 ## API Info
 
 **GET** Request to https://url-shortener-av.herokuapp.com/ will serve the static webpage
