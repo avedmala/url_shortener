@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const path = require("path");
-const helmet = require("helmet");
 const mongoose = require("mongoose");
 const { customAlphabet } = require("nanoid");
 require("dotenv").config();
@@ -33,7 +32,6 @@ const Url = mongoose.model("urls", urlSchema);
 
 app.set("view engine", "pug");
 
-app.use(helmet());
 app.use(morgan("tiny"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -41,6 +39,10 @@ app.use(express.static("./public"));
 
 app.get("/", (req, res) => {
   return res.sendFile(path.join(__dirname + "/public/index.html"));
+});
+
+app.get("/chart", (req, res) => {
+  return res.sendFile(path.join(__dirname + "/public/chart.html"));
 });
 
 app.get("/:id", (req, res) => {
